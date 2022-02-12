@@ -35,8 +35,7 @@ async def cb_handlers(c: Client, cb: "types.CallbackQuery"):
         await cb.message.delete(True)
     elif cb.data == "setThumbnail":
         await cb.answer()
-        await cb.message.edit("Send me any photo to set that as custom thumbnail.\n\n"
-                              "Press /cancel to cancel process.","**bold**", "<i>italic</i>", parse_mode="markdown")
+        await cb.message.send_message("Send me any photo to set that as custom thumbnail.","**bold**", "<i>italic</i>", parse_mode="markdown")
         from_user_thumb: "types.Message" = await c.listen(cb.message.chat.id)
         if not from_user_thumb.photo:
             await cb.message.edit("Process Cancelled!")
